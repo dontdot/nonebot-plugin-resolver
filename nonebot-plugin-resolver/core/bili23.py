@@ -52,7 +52,7 @@ async def download_b_file(url, full_file_name, progress_callback):
     :return:
     """
     async with httpx.AsyncClient(transport=httpx.AsyncHTTPTransport(local_address="0.0.0.0")) as client:
-        async with client.stream("GET", url, headers=BILIBILI_HEADER) as resp:
+        async with client.stream("GET", url, headers=BILIBILI_HEADER, follow_redirects=True) as resp:
             current_len = 0
             total_len = int(resp.headers.get('content-length', 0))
             print(total_len)
