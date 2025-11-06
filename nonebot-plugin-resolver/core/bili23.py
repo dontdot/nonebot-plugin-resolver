@@ -80,7 +80,7 @@ async def merge_file_to_mp4(v_full_file_name: str, a_full_file_name: str, output
         return
 
     # 构建 ffmpeg 命令
-    command = f'ffmpeg -y -i "{v_full_file_name}" -i "{a_full_file_name}" -c copy "{output_file_name}"'
+    command = f'ffmpeg -y -i "{v_full_file_name}" -i "{a_full_file_name}" -c:v libx264 -preset veryfast -crf 23 -c:a copy "{output_file_name}"'
     stdout = None if log_output else subprocess.DEVNULL
     stderr = None if log_output else subprocess.DEVNULL
 
